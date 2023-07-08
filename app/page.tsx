@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <main>
-      <h1 className=" text-lg py-5">Hello</h1>
+      <h1>Journal.ize</h1>
     </main>
   );
 }
