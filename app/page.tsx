@@ -1,7 +1,11 @@
+import { Card } from "@/components/ui/card";
+
 export default function Home() {
   return (
     <main>
-      <h1>Journal.ize</h1>
+      <Card>
+        <h1>Journal.ize</h1>
+      </Card>
     </main>
   );
 }
