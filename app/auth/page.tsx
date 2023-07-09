@@ -1,4 +1,7 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
+import { signIn } from "next-auth/react";
 
 import {
   Card,
@@ -17,7 +20,9 @@ export default function Login() {
         Sign-in with one of the providers
       </CardDescription>
       <div className="py-4">
-        <Button className="bg-red-700 w-full">Sign-in with Google</Button>
+        <Button onClick={() => signIn("google")} className="bg-red-700 w-full">
+          Sign-in with Google
+        </Button>
       </div>
     </Card>
   );
