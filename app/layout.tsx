@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`mx-4 md:mx-48 xl:mx-96 ${poppins.variable} bg-slate-100 text-black`}
+        className={`mx-4 md:mx-48 xl:mx-96 ${poppins.variable} text-black`}
       >
         <Nav />
         {children}

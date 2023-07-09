@@ -6,7 +6,7 @@ export default function Login() {
   return (
     <li className="list-none">
       <button
-        onClick={() => signIn()}
+        onClick={() => signIn("google")}
         className="hover:bg-slate-800 font-semibold text-xs bg-black text-white rounded-lg px-5 py-2"
       >
         Log in
