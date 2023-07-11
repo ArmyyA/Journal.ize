@@ -17,6 +17,7 @@ import { Textarea } from "./ui/textarea";
 
 export default function CreateEntry() {
   const [title, setTitle] = useState("");
+  const [isDisabled, setIsDisabled] = useState(false);
   return (
     <div>
       <Card className="shadow-md mt-4">
@@ -36,8 +37,15 @@ export default function CreateEntry() {
                 placeholder="Capture away"
               />
             </div>
-            <div className="mt-6">
-              <Button>Journalize.</Button>
+            <div className="mt-6 flex items-center justify-between">
+              <Button type="submit" disabled={isDisabled}>
+                Journalize.
+              </Button>
+              <p
+                className={`font-semibold ${
+                  title.length > 300 ? "text-red-500" : "text-black"
+                }`}
+              >{`${title.length}/300`}</p>
             </div>
           </form>
         </CardContent>

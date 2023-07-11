@@ -27,7 +27,7 @@ export default function SignedIn({ image, name }: User) {
     <li className="flex align-middle gap-5 overflow-hidden">
       <div className="">
         <DropdownMenu>
-          <DropdownMenuTrigger className="outline-none">
+          <DropdownMenuTrigger className="outline-none drop-shadow-md">
             <Image
               width={64}
               height={64}
