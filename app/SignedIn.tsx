@@ -25,10 +25,6 @@ type User = {
 export default function SignedIn({ image, name }: User) {
   return (
     <li className="flex align-middle gap-5 overflow-hidden">
-      <Button>
-        <Link href={"/"}>Button</Link>
-      </Button>
-
       <div className="">
         <DropdownMenu>
           <DropdownMenuTrigger className="outline-none">
