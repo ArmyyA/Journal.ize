@@ -15,11 +15,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={`mx-6 md:max-w-2xl md:mx-auto ${poppins.variable} text-black`}
-      >
-        <Nav />
-        {children}
+      <body className={`${poppins.variable} text-black`}>
+        <div className="mx-6 md:max-w-2xl md:mx-auto ">
+          <Nav />
+          {children}
+        </div>
       </body>
     </html>
   );

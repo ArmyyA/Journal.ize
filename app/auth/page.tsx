@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
+import Link from "next/link";
 
 import {
   Card,
@@ -20,7 +21,10 @@ export default function Login() {
         Sign-in with one of the providers
       </CardDescription>
       <div className="py-4">
-        <Button onClick={() => signIn("google")} className="bg-red-700 w-full">
+        <Button
+          onClick={() => signIn("google", { callbackUrl: "/" })}
+          className="bg-red-700 w-full"
+        >
           Sign-in with Google
         </Button>
       </div>
