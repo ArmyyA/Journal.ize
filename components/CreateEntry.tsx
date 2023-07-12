@@ -14,10 +14,24 @@ import {
 
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
 
 export default function CreateEntry() {
   const [title, setTitle] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
+
+  // Entry creation
+  const { mutate } = useMutation(
+    async (title: string) => await axios.post("/api/posts/addPost", { title })
+  );
+
+  const journalize = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsDisabled(true);
+    mutate(title);
+  };
+
   return (
     <div>
       <Card className="shadow-md mt-4">
@@ -28,7 +42,7 @@ export default function CreateEntry() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form onSubmit={journalize}>
             <div className="outline-none flex flex-col">
               <Textarea
                 onChange={(e) => setTitle(e.target.value)}

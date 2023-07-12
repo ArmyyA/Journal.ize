@@ -2,7 +2,6 @@ import Link from "next/link";
 import Login from "./login";
 import { authOptions } from "../pages/api/auth/[...nextauth]";
 import { getServerSession } from "next-auth/next";
-import { Heading1 } from "lucide-react";
 import SignedIn from "./SignedIn";
 
 export default async function Nav() {
