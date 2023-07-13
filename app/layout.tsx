@@ -2,6 +2,7 @@ import "./globals.css";
 import Nav from "./nav";
 import { Poppins } from "next/font/google";
 import QueryWrapper from "./QueryWrapper";
+import { Toaster } from "@/components/ui/toaster";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -20,6 +21,7 @@ export default function RootLayout({
         <QueryWrapper>
           <div className="mx-6 md:max-w-2xl md:mx-auto ">
             <Nav />
+            <Toaster />
             {children}
           </div>
         </QueryWrapper>

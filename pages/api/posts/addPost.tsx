@@ -32,7 +32,7 @@ export default async function handler(
     if (!title.length) {
       return res
         .status(403)
-        .json({ message: "You haven't captured your thoughts yet." });
+        .json({ message: "You haven't captured your thoughts yet!" });
     }
 
     // Try creating a post in post, passed title and user who created the post

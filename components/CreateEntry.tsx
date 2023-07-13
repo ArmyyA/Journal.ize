@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "./ui/button";
+import { useToast } from "./ui/use-toast";
 
 import {
   Card,
@@ -12,16 +13,14 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import { error } from "console";
-import { data } from "autoprefixer";
 
 export default function CreateEntry() {
   const [title, setTitle] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
+  const { toast } = useToast();
 
   // Entry creation
   const { mutate } = useMutation(
@@ -29,6 +28,10 @@ export default function CreateEntry() {
     {
       onError: (error) => {
         console.log("Error creating entry:", error);
+        toast({
+          title: "Woops! That wasn't supposed to happen.",
+          description: `${error?.response?.data.message}`,
+        });
       },
 
       onSuccess: (data) => {
