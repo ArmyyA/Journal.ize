@@ -50,7 +50,7 @@ export default function CreateEntry() {
         setIsDisabled(false);
 
         toast({
-          title: "Awesome! Thoughts Successfully Captured.",
+          title: "Awesome! Thoughts Successfully Captured 💭",
         });
       },
     }
