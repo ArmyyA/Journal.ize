@@ -33,7 +33,7 @@ export default function SignedIn({ image, name }: User) {
               height={64}
               src={image}
               alt=""
-              className="w-10 rounded-full hover:opacity-70 transition duration-200"
+              className="w-10 rounded-full hover:opacity-70 transition duration-200 ease-in-out"
             />
           </DropdownMenuTrigger>
           <DropdownMenuContent className="mt-2">

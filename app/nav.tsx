@@ -10,7 +10,7 @@ export default async function Nav() {
   return (
     <nav className="flex justify-between items-center py-8">
       <Link href={"/"}>
-        <h1 className="font-medium text-xl hover:text-slate-600">
+        <h1 className="font-medium text-xl hover:opacity-75 transition duration-200 ease-in-out">
           Journal.ize
         </h1>
       </Link>
