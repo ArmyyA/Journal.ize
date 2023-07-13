@@ -22,6 +22,7 @@ export default function RootLayout({
           <div className="mx-6 md:max-w-2xl md:mx-auto ">
             <Nav />
             <Toaster />
+
             {children}
           </div>
         </QueryWrapper>

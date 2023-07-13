@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { useToast } from "./ui/use-toast";
+import { ToastAction } from "@/components/ui/toast";
 
 import {
   Card,
@@ -15,7 +16,7 @@ import {
 
 import { Textarea } from "./ui/textarea";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 export default function CreateEntry() {
   const [title, setTitle] = useState("");
@@ -27,17 +28,30 @@ export default function CreateEntry() {
     async (title: string) => await axios.post("/api/posts/addPost", { title }),
     {
       onError: (error) => {
-        console.log("Error creating entry:", error);
-        toast({
-          title: "Woops! That wasn't supposed to happen.",
-          description: `${error?.response?.data.message}`,
-        });
+        //console.log("Error creating entry:", error);
+        if (error instanceof AxiosError) {
+          toast({
+            variant: "default",
+            title: "Houston, We Have an Error!",
+            description: `${error?.response?.data.message}`,
+            action: (
+              <ToastAction onClick={() => mutate(title)} altText="Try again">
+                Try again
+              </ToastAction>
+            ),
+          });
+          setIsDisabled(false);
+        }
       },
 
       onSuccess: (data) => {
-        console.log(data);
+        //console.log(data);
         setTitle("");
         setIsDisabled(false);
+
+        toast({
+          title: "Awesome! Thoughts Successfully Captured.",
+        });
       },
     }
   );
