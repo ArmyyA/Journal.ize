@@ -16,6 +16,8 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import { error } from "console";
+import { data } from "autoprefixer";
 
 export default function CreateEntry() {
   const [title, setTitle] = useState("");
@@ -23,7 +25,18 @@ export default function CreateEntry() {
 
   // Entry creation
   const { mutate } = useMutation(
-    async (title: string) => await axios.post("/api/posts/addPost", { title })
+    async (title: string) => await axios.post("/api/posts/addPost", { title }),
+    {
+      onError: (error) => {
+        console.log("Error creating entry:", error);
+      },
+
+      onSuccess: (data) => {
+        console.log(data);
+        setTitle("");
+        setIsDisabled(false);
+      },
+    }
   );
 
   const journalize = async (e: React.FormEvent) => {
