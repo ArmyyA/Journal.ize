@@ -40,10 +40,14 @@ export default function SignedIn({ image, name }: User) {
             <DropdownMenuLabel>{name}</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <Link href="/dashboard">
-              <DropdownMenuItem>Dashboard</DropdownMenuItem>
+              <DropdownMenuItem className="cursor-pointer">
+                Dashboard
+              </DropdownMenuItem>
             </Link>
             <Link onClick={() => signOut()} href="/">
-              <DropdownMenuItem>Log out</DropdownMenuItem>
+              <DropdownMenuItem className="cursor-pointer">
+                Log out
+              </DropdownMenuItem>
             </Link>
           </DropdownMenuContent>
         </DropdownMenu>
