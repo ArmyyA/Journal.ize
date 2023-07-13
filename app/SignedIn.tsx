@@ -25,7 +25,7 @@ type User = {
 export default function SignedIn({ image, name }: User) {
   return (
     <li className="flex align-middle gap-5 overflow-hidden">
-      <div className="">
+      <div className="p-2">
         <DropdownMenu>
           <DropdownMenuTrigger className="outline-none drop-shadow-md">
             <Image
@@ -33,7 +33,7 @@ export default function SignedIn({ image, name }: User) {
               height={64}
               src={image}
               alt=""
-              className="w-10 rounded-full hover:opacity-70 transition duration-200 ease-in-out"
+              className="scale-90 outline outline-2 outline-offset-2 outline-black w-10 rounded-full hover:opacity-70 transition duration-200 ease-in-out"
             />
           </DropdownMenuTrigger>
           <DropdownMenuContent className="mt-2">
