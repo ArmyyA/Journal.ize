@@ -9,42 +9,14 @@ export default async function handler(
   res: NextApiResponse
 ) {
   // Only handle if API request is POST
-  if (req.method === "POST") {
-    const session = await getServerSession(req, res, authOptions);
-    console.log(session);
-    if (!session) {
-      //console.log("reached");
-      return res.status(401).json({ message: "You are not signed in" });
-    }
-    const title: string = req.body.title;
-
-    // Fetching user using PrismaUser
-    const prismaUser = await prisma.user.findUnique({
-      where: { email: session?.user?.email },
-    });
-
-    // Title is too long, when trying to create an entry
-    if (title.length > 300) {
-      return res.status(403).json({ message: "Your entry is too long!" });
-    }
-
-    // Title is empty
-    if (!title.length) {
-      return res
-        .status(403)
-        .json({ message: "You haven't captured your thoughts yet!" });
-    }
+  if (req.method === "GET") {
+    // Fetching all entries
 
     // Try creating a post in post, passed title and user who created the post
     try {
-      const result = await prisma.post.create({
-        data: {
-          title,
-          userId: prismaUser?.id,
-        },
-      });
+      const data = await prisma.post.findMany();
 
-      res.status(200).json(result);
+      res.status(200).json(data);
 
       // API handle Error
     } catch (err) {
