@@ -7,6 +7,7 @@ import Entry from "@/components/Entry";
 import { Progress } from "@/components/ui/progress";
 import { useState } from "react";
 import { useEffect } from "react";
+import { EntryType } from "./types/Entry";
 
 // Display all entries through fetch
 const globalEntries = async () => {
@@ -16,17 +17,19 @@ const globalEntries = async () => {
 
 export default function Home() {
   const [progress, setProgress] = useState(13);
-  const { data, error, isLoading } = useQuery({
+  const { data, error, isLoading } = useQuery<EntryType[]>({
     queryFn: globalEntries,
     queryKey: ["posts"],
   });
 
+  // Effect for progress
   useEffect(() => {
     const timer = setTimeout(() => setProgress(66), 50);
     return () => clearTimeout(timer);
   }, []);
 
   if (error) return error;
+  // Progress bar for loading
   if (isLoading) {
     return <Progress value={progress} className="w-[60%]" />;
   }
@@ -43,6 +46,7 @@ export default function Home() {
               avatar={entry.user.image}
               entryTitle={entry.title}
               id={entry.id}
+              comments={entry.Comment}
             />
           </div>
         ))}

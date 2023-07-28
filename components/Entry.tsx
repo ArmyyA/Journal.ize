@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Card } from "./ui/card";
 
-export default function Entry({ avatar, name, entryTitle, id }) {
+export default function Entry({ avatar, name, entryTitle, id, comments }) {
   return (
     <Card>
       <div className="bg-white  p-8 rounded-lg shadow-md">
@@ -24,7 +24,9 @@ export default function Entry({ avatar, name, entryTitle, id }) {
         </div>
         <div className="flex gap-4 cursor-pointer items-center">
           <Link href={`/entry/${id}`}>
-            <p className="text-sm font-bold text-gray-700">Comments</p>
+            <p className="text-sm font-bold text-gray-700">
+              {comments?.length} Comments
+            </p>
           </Link>
         </div>
       </div>

@@ -15,7 +15,7 @@ export default async function handler(
     // Try creating a post in post, passed title and user who created the post
     try {
       const data = await prisma.post.findMany({
-        include: { user: true },
+        include: { user: true, Comment: true },
         orderBy: {
           createdAt: "desc",
         },
