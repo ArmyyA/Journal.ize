@@ -14,13 +14,18 @@ export default async function handler(
 
     // Try creating a post in post, passed title and user who created the post
     try {
-      const data = await prisma.post.findMany();
+      const data = await prisma.post.findMany({
+        include: { user: true },
+        orderBy: {
+          createdAt: "desc",
+        },
+      });
 
       res.status(200).json(data);
 
       // API handle Error
     } catch (err) {
-      res.status(403).json({ err: "Unable to journalize" });
+      res.status(403).json({ err: "Error, can't fetch user entries." });
     }
   }
 }
