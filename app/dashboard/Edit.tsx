@@ -18,7 +18,7 @@ type EditProps = {
 
 export default function Edit({ avatar, title, name, id, comments }: EditProps) {
   return (
-    <Card className="shadow-md">
+    <Card className="shadow-md my-6">
       <div className="bg-white p-8 rounded-lg">
         <div className="flex items-center gap-3">
           <Image
@@ -33,7 +33,7 @@ export default function Edit({ avatar, title, name, id, comments }: EditProps) {
         <div className="my-8">
           <p className="break-all">{title}</p>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex justify-between">
           <p className="text-sm font-bold text-gray-700">
             {comments?.length} Comments
           </p>

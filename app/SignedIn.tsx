@@ -33,7 +33,7 @@ export default function SignedIn({ image, name }: User) {
               height={64}
               src={image}
               alt=""
-              className="scale-90 outline outline-2 outline-offset-2 outline-black w-10 rounded-full hover:opacity-70"
+              className="scale-90 w-10 rounded-full hover:opacity-70"
             />
           </DropdownMenuTrigger>
           <DropdownMenuContent className="mt-2">
@@ -44,7 +44,7 @@ export default function SignedIn({ image, name }: User) {
                 Dashboard
               </DropdownMenuItem>
             </Link>
-            <Link onClick={() => signOut()} href="/">
+            <Link onClick={() => signOut({ callbackUrl: "/" })} href="">
               <DropdownMenuItem className="cursor-pointer">
                 Log out
               </DropdownMenuItem>
