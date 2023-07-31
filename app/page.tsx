@@ -31,7 +31,11 @@ export default function Home() {
   if (error) return error;
   // Progress bar for loading
   if (isLoading) {
-    return <Progress value={progress} className="w-[60%]" />;
+    return (
+      <div className="flex justify-center mt-4">
+        <Progress value={progress} className="w-[60%]" />
+      </div>
+    );
   }
   return (
     <main>
