@@ -7,8 +7,8 @@ import { Card } from "./ui/card";
 
 export default function Entry({ avatar, name, entryTitle, id, comments }) {
   return (
-    <Card>
-      <div className="bg-white  p-8 rounded-lg shadow-md">
+    <Card className="shadow-md">
+      <div className="bg-white  p-8 rounded-lg ">
         <div className="flex items-center gap-2">
           <Image
             className="rounded-full"
@@ -17,7 +17,7 @@ export default function Entry({ avatar, name, entryTitle, id, comments }) {
             src={avatar}
             alt="avatar"
           />
-          <h3 className="font-bold">{name}</h3>
+          <h3 className="font-semibold">{name}</h3>
         </div>
         <div className="my-8">
           <p>{entryTitle}</p>
