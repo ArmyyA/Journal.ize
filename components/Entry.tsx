@@ -8,7 +8,7 @@ import { Card } from "./ui/card";
 export default function Entry({ avatar, name, entryTitle, id, comments }) {
   return (
     <Card className="shadow-md">
-      <div className="bg-white  p-8 rounded-lg ">
+      <div className="bg-white p-8 rounded-lg ">
         <div className="flex items-center gap-2">
           <Image
             className="rounded-full"

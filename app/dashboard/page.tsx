@@ -11,8 +11,9 @@ export default async function Dashboard() {
 
   return (
     <main>
-      <h1 className="font-light text-2xl">Hey there, {session.user?.name}.</h1>
-      <div className="mt-10">
+      <h1 className="font-light text-3xl">Hey there, {session.user?.name}.</h1>
+      <h1 className="font-medium text-xl mt-10">Your Posts</h1>
+      <div className="mt-5">
         <DashEntry />
       </div>
     </main>

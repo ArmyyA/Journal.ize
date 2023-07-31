@@ -26,7 +26,7 @@ export default function DashEntry() {
           key={post.id}
           avatar={data.image}
           name={data.name}
-          comments={post.comments}
+          comments={post.Comment}
           title={post.title}
         />
       ))}

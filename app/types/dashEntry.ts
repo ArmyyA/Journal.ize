@@ -7,7 +7,7 @@ export type DashEntries = {
     createdAt: string;
     id: string;
     title: string;
-    comments?: {
+    Comment?: {
       createdAt: string;
       id: string;
       postId: string;
