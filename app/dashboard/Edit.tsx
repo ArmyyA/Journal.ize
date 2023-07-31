@@ -37,7 +37,9 @@ export default function Edit({ avatar, title, name, id, comments }: EditProps) {
           <p className="text-sm font-bold text-gray-700">
             {comments?.length} Comments
           </p>
-          <button className="text-sm font-semibold text-red-600">Delete</button>
+          <button className="text-sm font-semibold text-red-600 hover:opacity-60">
+            Delete
+          </button>
         </div>
       </div>
     </Card>
