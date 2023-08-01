@@ -14,6 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 type User = {
   image: string;
@@ -28,13 +29,19 @@ export default function SignedIn({ image, name }: User) {
       <div className="p-2">
         <DropdownMenu>
           <DropdownMenuTrigger className="outline-none drop-shadow-md">
-            <Image
-              width={64}
-              height={64}
-              src={image}
-              alt=""
-              className="scale-90 w-10 rounded-full hover:opacity-70"
-            />
+            <motion.div
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.2, delay: 2 }}
+            >
+              <Image
+                width={64}
+                height={64}
+                src={image}
+                alt=""
+                className="scale-90 w-10 rounded-full hover:opacity-70"
+              />
+            </motion.div>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="mt-2">
             <DropdownMenuLabel>{name}</DropdownMenuLabel>

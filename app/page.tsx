@@ -19,20 +19,21 @@ const globalEntries = async () => {
 
 const cardVariants: Variants = {
   offscreen: {
-    y: 200,
+    y: 300,
   },
   onscreen: {
     y: 10,
     transition: {
       type: "spring",
-      bounce: 0.3,
+      bounce: 0.2,
       duration: 0.8,
     },
   },
 };
-
+//setProgress(66), 50
 export default function Home() {
-  const [progress, setProgress] = useState(13);
+  const [progress, setProgress] = useState(10);
+  const [showContents, setShowContents] = useState(false);
   const { data, error, isLoading } = useQuery<EntryType[]>({
     queryFn: globalEntries,
     queryKey: ["posts"],
@@ -40,13 +41,23 @@ export default function Home() {
 
   // Effect for progress
   useEffect(() => {
-    const timer = setTimeout(() => setProgress(66), 50);
-    return () => clearTimeout(timer);
+    const timer = setTimeout(() => {
+      setShowContents(true);
+    }, 1000);
+
+    const loadingInterval = setInterval(() => {
+      setProgress((prevProgress) => Math.min(prevProgress + 20, 200)); // Change this value to control the loading speed
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+      clearInterval(loadingInterval);
+    };
   }, []);
 
   if (error) return error;
   // Progress bar for loading
-  if (isLoading) {
+  if (!showContents || isLoading) {
     return (
       <div className="flex justify-center mt-4">
         <Progress value={progress} className="w-[60%]" />
@@ -55,32 +66,51 @@ export default function Home() {
   }
   return (
     <main>
-      <CreateEntry />
-      <Separator className="mt-10" />
-      <h1 className="font-medium text-2xl mt-10">What's hot</h1>
+      <motion.div
+        initial={{ y: 10, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.2, delay: 0.5 }}
+      >
+        <CreateEntry />
 
-      <div className="mt-3">
-        {data?.map((entry) => (
-          <motion.div
-            initial="offscreen"
-            whileInView="onscreen"
-            viewport={{ once: true, amount: 0.8 }}
-          >
-            <motion.div variants={cardVariants}>
-              <div className="py-3">
-                <Entry
-                  key={entry.id}
-                  name={entry.user.name}
-                  avatar={entry.user.image}
-                  entryTitle={entry.title}
-                  id={entry.id}
-                  comments={entry.Comment}
-                />
-              </div>
+        <Separator className="mt-10" />
+        <h1 className="font-medium text-2xl mt-10">What's hot</h1>
+      </motion.div>
+
+      <motion.div
+        initial={{ y: 1000 }}
+        animate={{ y: 0 }}
+        transition={{
+          type: "spring",
+          bounce: 0.1,
+          duration: 1,
+          delay: 1.2,
+        }}
+        viewport={{ once: true, amount: 0.8 }}
+      >
+        <div className="mt-3">
+          {data?.map((entry) => (
+            <motion.div
+              initial="offscreen"
+              whileInView="onscreen"
+              viewport={{ once: true, amount: 0.8 }}
+            >
+              <motion.div variants={cardVariants}>
+                <div className="py-3">
+                  <Entry
+                    key={entry.id}
+                    name={entry.user.name}
+                    avatar={entry.user.image}
+                    entryTitle={entry.title}
+                    id={entry.id}
+                    comments={entry.Comment}
+                  />
+                </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        ))}
-      </div>
+          ))}
+        </div>
+      </motion.div>
     </main>
   );
 }

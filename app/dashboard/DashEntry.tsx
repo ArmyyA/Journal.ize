@@ -1,4 +1,5 @@
 "use client";
+import { motion, Variants } from "framer-motion";
 
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -8,6 +9,20 @@ import Edit from "./Edit";
 const fetch = async () => {
   const response = await axios.get("/api/posts/dashEntry");
   return response.data;
+};
+
+const cardVariants: Variants = {
+  offscreen: {
+    y: 300,
+  },
+  onscreen: {
+    y: 10,
+    transition: {
+      type: "spring",
+      bounce: 0.3,
+      duration: 1,
+    },
+  },
 };
 
 export default function DashEntry() {
@@ -21,14 +36,22 @@ export default function DashEntry() {
   return (
     <div>
       {data?.posts?.map((post) => (
-        <Edit
-          id={post.id}
-          key={post.id}
-          avatar={data.image}
-          name={data.name}
-          comments={post.Comment}
-          title={post.title}
-        />
+        <motion.div
+          initial="offscreen"
+          whileInView="onscreen"
+          viewport={{ once: true, amount: 0.8 }}
+        >
+          <motion.div variants={cardVariants}>
+            <Edit
+              id={post.id}
+              key={post.id}
+              avatar={data.image}
+              name={data.name}
+              comments={post.Comment}
+              title={post.title}
+            />
+          </motion.div>
+        </motion.div>
       ))}
     </div>
   );

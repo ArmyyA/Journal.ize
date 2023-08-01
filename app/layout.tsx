@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${poppins.variable} text-black`}>
         <QueryWrapper>
-          <div className="mx-6 md:max-w-2xl md:mx-auto ">
+          <div className="mx-6 md:max-w-4xl md:mx-auto ">
             <Nav />
             <Toaster />
 
