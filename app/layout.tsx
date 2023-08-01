@@ -26,6 +26,7 @@ export default function RootLayout({
             {children}
           </div>
         </QueryWrapper>
+        <footer className="py-32"></footer>
       </body>
     </html>
   );

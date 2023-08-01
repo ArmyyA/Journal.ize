@@ -9,11 +9,26 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { EntryType } from "./types/Entry";
 import { Separator } from "@/components/ui/separator";
+import { motion, Variants } from "framer-motion";
 
 // Display all entries through fetch
 const globalEntries = async () => {
   const response = await axios.get("/api/posts/getEntry");
   return response.data;
+};
+
+const cardVariants: Variants = {
+  offscreen: {
+    y: 200,
+  },
+  onscreen: {
+    y: 10,
+    transition: {
+      type: "spring",
+      bounce: 0.3,
+      duration: 0.8,
+    },
+  },
 };
 
 export default function Home() {
@@ -46,16 +61,24 @@ export default function Home() {
 
       <div className="mt-3">
         {data?.map((entry) => (
-          <div className="py-3">
-            <Entry
-              key={entry.id}
-              name={entry.user.name}
-              avatar={entry.user.image}
-              entryTitle={entry.title}
-              id={entry.id}
-              comments={entry.Comment}
-            />
-          </div>
+          <motion.div
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{ once: true, amount: 0.8 }}
+          >
+            <motion.div variants={cardVariants}>
+              <div className="py-3">
+                <Entry
+                  key={entry.id}
+                  name={entry.user.name}
+                  avatar={entry.user.image}
+                  entryTitle={entry.title}
+                  id={entry.id}
+                  comments={entry.Comment}
+                />
+              </div>
+            </motion.div>
+          </motion.div>
         ))}
       </div>
     </main>
