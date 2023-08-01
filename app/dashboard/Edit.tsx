@@ -76,15 +76,15 @@ export default function Edit({ avatar, title, name, id, comments }: EditProps) {
           <div className="my-8">
             <p className="break-all">{title}</p>
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between items-center">
             <p className="text-sm font-bold text-gray-700">
               {comments?.length} Comments
             </p>
             <Dialog open={open} onOpenChange={setOpen}>
               <DialogTrigger>
-                <button className="text-sm font-semibold text-red-600 hover:opacity-60">
+                <Button className="text-sm font-semibold bg-red-700 hover:opacity-90">
                   Delete
-                </button>
+                </Button>
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
