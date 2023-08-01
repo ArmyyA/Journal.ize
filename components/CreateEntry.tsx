@@ -21,6 +21,7 @@ import axios, { AxiosError } from "axios";
 export default function CreateEntry() {
   const [title, setTitle] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
+  const queryClient = useQueryClient();
   const { toast } = useToast();
 
   // Entry creation
@@ -52,6 +53,8 @@ export default function CreateEntry() {
         toast({
           title: "Awesome! Thoughts Successfully Captured 💭",
         });
+
+        queryClient.invalidateQueries(["posts"]);
       },
     }
   );

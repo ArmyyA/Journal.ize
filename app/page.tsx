@@ -8,6 +8,7 @@ import { Progress } from "@/components/ui/progress";
 import { useState } from "react";
 import { useEffect } from "react";
 import { EntryType } from "./types/Entry";
+import { Separator } from "@/components/ui/separator";
 
 // Display all entries through fetch
 const globalEntries = async () => {
@@ -40,7 +41,9 @@ export default function Home() {
   return (
     <main>
       <CreateEntry />
+      <Separator className="mt-10" />
       <h1 className="font-medium text-2xl mt-10">What's hot</h1>
+
       <div className="mt-3">
         {data?.map((entry) => (
           <div className="py-3">
