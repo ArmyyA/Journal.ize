@@ -15,7 +15,11 @@ export default async function Nav() {
         </h1>
       </Link>
       <ul className="flex items-center gap-6">
-        {!session?.user && <Link href={"/auth"}>Join Now</Link>}
+        {!session?.user && (
+          <Link className="hover:opacity-70" href={"/auth"}>
+            Join Now
+          </Link>
+        )}
         {session?.user && (
           <SignedIn
             name={session.user?.name || ""}
