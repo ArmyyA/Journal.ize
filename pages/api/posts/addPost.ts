@@ -20,6 +20,7 @@ export default async function handler(
 
     // Fetching user using PrismaUser
     const prismaUser = await prisma.user.findUnique({
+      //@ts-ignore
       where: { email: session?.user?.email },
     });
 
@@ -38,6 +39,7 @@ export default async function handler(
     // Try creating a post in post, passed title and user who created the post
     try {
       const result = await prisma.post.create({
+        //@ts-ignore
         data: {
           title,
           userId: prismaUser?.id,

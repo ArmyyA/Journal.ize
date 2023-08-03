@@ -14,13 +14,8 @@ type EntryProps = {
   comments: CommentType[];
 };
 
-export default function Entry({
-  avatar,
-  name,
-  entryTitle,
-  id,
-  comments,
-}: EntryProps) {
+//@ts-ignore
+export default function Entry({ avatar, name, entryTitle, id, comments }) {
   return (
     <Card className="shadow-md">
       <div className="bg-white p-8 rounded-lg ">

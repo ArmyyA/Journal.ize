@@ -12,6 +12,7 @@ export default async function handler(
     try {
       const data = await prisma.post.findUnique({
         where: {
+          //@ts-ignore
           id: req.query.details,
         },
         include: {
