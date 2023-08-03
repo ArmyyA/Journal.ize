@@ -15,6 +15,23 @@ type URL = {
   };
 };
 
+type CommentType = {
+  title: string;
+  id: string;
+  createdAt: string;
+  comment: string;
+  user: {
+    name: string;
+    image: string;
+  };
+  Comment?: {
+    createdAt: string;
+    id: string;
+    postId: string;
+    userId: string;
+  }[];
+};
+
 const fetch = async (slug: string) => {
   const response = await axios.get(`/api/posts/${slug}`);
   return response.data;
@@ -41,7 +58,7 @@ export default function EntryDetail(url: URL) {
       <Comment id={data?.id} />
       <Separator className="mt-8" />
       <h1 className="mt-8 font-semibold text-lg">Comments</h1>
-      {data?.Comment?.map((comment) => (
+      {data?.Comment?.map((comment: CommentType) => (
         <Card className="my-4 shadow-md">
           <div key={comment.id} className=" bg-white p-8 rounded-lg">
             <div className="flex items-center">
