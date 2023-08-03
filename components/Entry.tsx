@@ -4,8 +4,23 @@ import Image from "next/image";
 
 import Link from "next/link";
 import { Card } from "./ui/card";
+import { CommentType } from "@/app/types/Comment";
 
-export default function Entry({ avatar, name, entryTitle, id, comments }) {
+type EntryProps = {
+  avatar: string;
+  name: string;
+  entryTitle: string;
+  id: string;
+  comments: CommentType[];
+};
+
+export default function Entry({
+  avatar,
+  name,
+  entryTitle,
+  id,
+  comments,
+}: EntryProps) {
   return (
     <Card className="shadow-md">
       <div className="bg-white p-8 rounded-lg ">
