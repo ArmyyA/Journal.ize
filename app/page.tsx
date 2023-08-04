@@ -55,7 +55,10 @@ export default function Home() {
     };
   }, []);
 
-  if (error) return error;
+  if (error) {
+    console.log("REAAAACHED");
+    return error;
+  }
   // Progress bar for loading
   if (!showContents || isLoading) {
     return (
