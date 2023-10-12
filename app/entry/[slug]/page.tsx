@@ -73,7 +73,8 @@ export default function EntryDetail(url: URL) {
                 {comment?.user?.name}
               </h3>
               <h2 className="font-normal text-xs text-slate-400 px-2">
-                {comment.createdAt}
+                {comment.createdAt.split("T")[0]} at{" "}
+                {comment.createdAt.split("T")[1].split(".")[0]}
               </h2>
             </div>
             <p className="py-5">{comment.comment}</p>
